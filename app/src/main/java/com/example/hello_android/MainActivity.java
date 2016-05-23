@@ -1,5 +1,7 @@
 package com.example.hello_android;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,6 +9,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,11 +26,16 @@ public class MainActivity extends AppCompatActivity {
     private List<Map<String, Object>> dataList;
     private SimpleAdapter adapter;
     // 图片封装为一个数组
-    private int[] icon = { R.drawable.calculator,
-                           R.drawable.ball,
-                           R.drawable.messenger,
-                           R.drawable.map};
-    private String[] iconName = { "计算器", "弹球", "聊天", "地图" };
+    private int[] icon = {R.drawable.calculator,
+            R.drawable.ball,
+            R.drawable.messenger,
+            R.drawable.map};
+    private String[] iconName = {"计算器", "弹球", "聊天", "地图"};
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -40,18 +51,20 @@ public class MainActivity extends AppCompatActivity {
         //获取数据
         getData();
         //新建适配器
-        String [] from ={"image","text"};
-        int [] to = {R.id.image, R.id.text};
+        String[] from = {"image", "text"};
+        int[] to = {R.id.image, R.id.text};
         adapter = new SimpleAdapter(this, dataList, R.layout.item, from, to);
         //配置适配器
         gridView.setAdapter(adapter);
 
 
-        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Log.i("MainActivity", "Position:" + position);
+                if (position == 0) {
+                    Intent intent = new Intent(MainActivity.this, CalcActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -74,12 +87,15 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });*/
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
-    public List<Map<String, Object>> getData(){
+    public List<Map<String, Object>> getData() {
         //cion和iconName的长度是相同的，这里任选其一都可以
-        for(int i = 0; i < icon.length; i++){
+        for (int i = 0; i < icon.length; i++) {
             Map<String, Object> map = new HashMap<String, Object>();
             map.put("image", icon[i]);
             map.put("text", iconName[i]);
