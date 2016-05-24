@@ -19,9 +19,11 @@
         android:layout_gravity="right"
         android:background="#eee"
         android:textColor="#000"
-        android:text="0"/>
+        android:text=""
+        android:maxLength="12"/>
 
     <TextView
+        android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_columnSpan="4"
@@ -32,6 +34,7 @@
         android:layout_gravity="right"
         android:background="#eee"
         android:textColor="#000"
-        android:text="0"/>
+        android:text="0"
+        android:maxLength="12"/>
 
 </GridLayout>

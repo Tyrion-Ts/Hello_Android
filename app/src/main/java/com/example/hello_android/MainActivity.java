@@ -1,7 +1,6 @@
 package com.example.hello_android;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
 
-import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -27,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private SimpleAdapter adapter;
     // 图片封装为一个数组
     private int[] icon = {R.drawable.calculator,
-            R.drawable.ball,
+            R.drawable.superpong,
             R.drawable.messenger,
-            R.drawable.map};
+            R.drawable.maps};
     private String[] iconName = {"计算器", "弹球", "聊天", "地图"};
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
